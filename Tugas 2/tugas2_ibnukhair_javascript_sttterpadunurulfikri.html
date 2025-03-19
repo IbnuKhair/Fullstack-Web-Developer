@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Data Pegawai</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama Pegawai</th>
+            <th>Umur</th>
+            <th>Jabatan</th>
+            <th>Status</th>
+            <th>Gaji Pokok</th>
+            <th>Tunjangan Jabatan</th>
+            <th>BPJS</th>
+            <th>Tunjangan Keluarga</th>
+            <th>Total Gaji</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="nama"></td>
+            <td id="umur"></td>
+            <td id="jabatan"></td>
+            <td id="status"></td>
+            <td id="gapok"></td>
+            <td id="tunjangan-jabatan"></td>
+            <td id="bpjs"></td>
+            <td id="tunjangan-keluarga"></td>
+            <td id="total-gaji"></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="8">Total Gaji</td>
+            <td id="grand-total"></td>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    // Data pegawai
+    const namaPegawai = "Dodi Prayodi";
+    const umur = 25;
+    const jabatan = "Manajer";
+    const status = "Menikah";
+
+    // Gaji Pokok berdasarkan jabatan
+    let gajiPokok = 0;
+    if (jabatan === "Manajer") {
+        gajiPokok = 15000000;
+    } else if (jabatan === "Asisten Manajer") {
+        gajiPokok = 1000000;
+    } else if (jabatan === "Staff") {
+        gajiPokok = 5000000;
+    }
+
+    // Tunjangan Jabatan (15% dari gaji pokok)
+    const tunjanganJabatan = 0.15 * gajiPokok;
+
+    // BPJS (10% dari gaji pokok)
+    const bpjs = 0.10 * gajiPokok;
+
+    // Tunjangan Keluarga (20% dari gaji pokok jika menikah)
+    const tunjanganKeluarga = status === "Menikah" ? 0.20 * gajiPokok : 0;
+
+    // Total Gaji (Gaji Pokok + Tunjangan Jabatan + BPJS + Tunjangan Keluarga)
+    const totalGaji = gajiPokok + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+    // Menampilkan data ke dalam tabel
+    document.getElementById("nama").textContent = namaPegawai;
+    document.getElementById("umur").textContent = umur;
+    document.getElementById("jabatan").textContent = jabatan;
+    document.getElementById("status").textContent = status;
+    document.getElementById("gapok").textContent = gajiPokok.toLocaleString();
+    document.getElementById("tunjangan-jabatan").textContent = tunjanganJabatan.toLocaleString();
+    document.getElementById("bpjs").textContent = bpjs.toLocaleString();
+    document.getElementById("tunjangan-keluarga").textContent = tunjanganKeluarga.toLocaleString();
+    document.getElementById("total-gaji").textContent = totalGaji.toLocaleString();
+
+    // Menampilkan grand total
+    document.getElementById("grand-total").textContent = totalGaji.toLocaleString();
+</script>
+
+</body>
+</html>
